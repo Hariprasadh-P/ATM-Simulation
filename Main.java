@@ -1,66 +1,10 @@
 import java.util.Scanner;
-abstract class BankOps {
-    abstract void transaction(double amt);
-}
-class Account {
-    private double bal;
 
-    public Account(double bal) {
-        this.bal = bal;
-    }
-
-    public double getBal() {
-        return bal;
-    }
-
-    public void deposit(double amt) {
-        if (amt > 0) {
-            bal += amt;
-            System.out.println("Deposited: " + amt);
-        } else {
-            System.out.println("Invalid deposit.");
-        }
-    }
-
-    public void withdraw(double amt) {
-        if (amt > 0 && amt <= bal) {
-            bal -= amt;
-            System.out.println("Withdrawn: " + amt);
-        } else {
-            System.out.println("Insufficient funds or invalid input.");
-        }
-    }
-}
-class ATM extends BankOps {
-    private Account acc;
-    private String op;
-
-    public ATM(Account acc, String op) {
-        this.acc = acc;
-        this.op = op;
-    }
-
-    @Override
-    void transaction(double amt) {
-        switch (op) {
-            case "deposit":
-                acc.deposit(amt);
-                break;
-            case "withdraw":
-                acc.withdraw(amt);
-                break;
-            case "check":
-                System.out.println("Balance: " + acc.getBal());
-                break;
-            default:
-                System.out.println("Invalid operation.");
-        }
-    }
-}
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Account acc = new Account(5000); 
+        Account acc = new Account(0);
+
         while (true) {
             System.out.println("\n===== ATM MENU =====");
             System.out.println("1. Deposit");
